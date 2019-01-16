@@ -1,0 +1,10 @@
+#!/bin/sh
+#removes the filter for the specified mark
+PORT=enp0s3
+CLASSID=$1
+URATE=$2
+DRATE=$3
+PRIO=$1
+
+tc filter del dev $PORT prio $PRIO
+tc class del dev $PORT classid 1:$CLASSID

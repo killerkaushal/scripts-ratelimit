@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#this script removes a marked ip address from the iptables
+
+MARK=$1
+MAC=$2
+IP=$3
+
+iptables -D FORWARD -t mangle -d ${IP} -j MARK --set-mark $MARK

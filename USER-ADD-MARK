@@ -1,0 +1,18 @@
+#!/bin/sh
+
+#comment the variables to hardcode them
+ 
+#PORT=$1
+PORT=enp0s3
+CLASSID=$1
+URATE=$2
+DRATE=$3
+#PRIO=$4
+PRIO=$1
+
+#DOWNLINK RATE LIMITING CLASS AS DEFINED BY USER GIVEN VALUES
+
+tc class add dev "$PORT" parent 1:0 classid 1:"$CLASSID" htb rate "$DRATE"kbps ceil "$DRATE"kbps prio $PRIO
+tc filter add dev "$PORT" parent 1:0 prio "$PRIO" protocol ip handle "$CLASSID" fw flowid 1:"$CLASSID"
+
+#UPLINK RATE LIMITING CLASS
