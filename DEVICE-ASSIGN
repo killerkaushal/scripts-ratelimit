@@ -1,7 +1,13 @@
 #!/bin/sh
 #corresponds to assign_device as used in C code
-
-IP=$3
-MAC=$2
-MARK=$1
-iptables -A FORWARD -t mangle -d ${IP} -j MARK --set-mark $MARK
+if [ $# -eq 3 ]
+then
+	IP=$3
+	MAC=$2
+	MARK=$1
+	echo $1 , $2 , $3 
+	iptables -A FORWARD -t mangle -d ${IP} -j MARK --set-mark $MARK
+	iptables -A FORWARD -t mangle -s ${IP} -j MARK --set-mark $MARK
+else
+	echo "Wrong number of arguments. Order is mark mac IP"
+fi
