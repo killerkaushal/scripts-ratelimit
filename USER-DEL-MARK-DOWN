@@ -3,7 +3,7 @@
 #DOWLINK
 PORT1=enp3s0f1
 #UPLINK
-PORT2=enp3s0f0
+#PORT2=enp3s0f0
 CLASSID=$1
 var1=$2
 var2=$3
@@ -16,6 +16,6 @@ echo $1 , $2 , $3
 tc filter del dev $PORT1 prio $PRIO
 tc class del dev $PORT1 classid 1:$CLASSID
 #UPLINK
-tc filter del dev $PORT2 prio $PRIO
-tc class del dev $PORT2 classid 2:$CLASSID
+#tc filter del dev $PORT2 prio $PRIO
+#tc class del dev $PORT2 classid 2:$CLASSID
 

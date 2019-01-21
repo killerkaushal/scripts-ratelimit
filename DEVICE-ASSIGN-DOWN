@@ -6,8 +6,8 @@ then
 	MAC=$2
 	MARK=$1
 	echo $1 , $2 , $3 
+	#DOWNLINK
 	iptables -A FORWARD -t mangle -d ${IP} -j MARK --set-mark $MARK
-	iptables -A FORWARD -t mangle -s ${IP} -j MARK --set-mark $MARK
 else
 	echo "Wrong number of arguments. Order is mark mac IP"
 fi

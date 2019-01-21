@@ -3,6 +3,11 @@
 
 var1=enp3s0f1
 var2=enp3s0f0
+#DELETING EXISTING PORTS HANDLES
+tc qdisc del dev $var1 root handle 1:0 htb
+tc qdisc del dev $var2 root handle 2:0 htb
+#CREATING NEW HANDLES FOR PORTS
+
 #DOWNLINK PORT
 tc qdisc add dev $var1 root handle 1:0 htb
 #UPLINK PORT

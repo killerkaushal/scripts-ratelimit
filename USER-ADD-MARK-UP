@@ -2,7 +2,7 @@
 
 #comment the variables to hardcode them
 #DOWNLINK
-PORT1=enp3s0f1
+#PORT1=enp3s0f1
 #UPLINK
 PORT2=enp3s0f0
 
@@ -15,11 +15,12 @@ DRATE=$((var2/var3))
 PRIO=$1
 
 # RATE LIMITING CLASS AS DEFINED BY USER GIVEN VALUES
+
 #DOWNLINK
-echo $1 , $URATE , $DRATE , $PRIO
-tc class add dev "$PORT1" parent 1:0 classid 1:"$CLASSID" htb rate "$DRATE"kbps ceil "$DRATE"kbps prio $PRIO
-tc filter add dev "$PORT1" parent 1:0 prio "$PRIO" protocol ip handle "$CLASSID" fw flowid 1:"$CLASSID"
-echo $1 , $URATE , $DRATE , $PRIO
+#echo $1 , $URATE , $DRATE , $PRIO
+#tc class add dev "$PORT1" parent 1:0 classid 1:"$CLASSID" htb rate "$DRATE"kbps ceil "$DRATE"kbps prio $PRIO
+#tc filter add dev "$PORT1" parent 1:0 prio "$PRIO" protocol ip handle "$CLASSID" fw flowid 1:"$CLASSID"
+#echo $1 , $URATE , $DRATE , $PRIO
 #UPLINK
 tc class add dev "$PORT2" parent 2:0 classid 2:"$CLASSID" htb rate "$URATE"kbps ceil "$URATE"kbps prio $PRIO
 tc filter add dev "$PORT2" parent 2:0 prio "$PRIO" protocol ip handle "$CLASSID" fw flowid 2:"$CLASSID"
